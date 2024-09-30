@@ -32,4 +32,13 @@ class ActividadesService {
     );
     return json.decode(respuesta.body);
   }
+
+  Future<List<dynamic>> ActividadesPorFecha() async {
+    var respuesta = await http.get(Uri.parse('${this.apiUrl}/actividades/'));
+
+    if (respuesta.statusCode == 200) {
+      return json.decode(respuesta.body);
+    }
+    return [];
+  }
 }

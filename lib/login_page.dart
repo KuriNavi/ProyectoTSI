@@ -1,3 +1,4 @@
+import 'package:agenda_tsi/Actividades/actividades_lista.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:agenda_tsi/services/users_service.dart';
@@ -127,8 +128,12 @@ class _LoginPageState extends State<LoginPage> {
                   );
 
                   if (pasoElLogin) {
-                    Navigator.pushReplacementNamed(
-                        context, '/Actividades/actividades_lista');
+                    final route = MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return ActividadesLista();
+                      },
+                    );
+                    Navigator.of(context).push(route);
                   }
                 }
               },
