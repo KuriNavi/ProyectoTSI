@@ -94,4 +94,15 @@ class UsuariosController extends Controller
         }
 
     }
+    public function updateDeTodo(Request $request, Usuario $usuario)
+    {
+        \Log::info('Entrando en el método login con datos:', $request->all());
+        $usuario->nombre_usuario = $request->nombre_usuario;
+        $usuario->correo = $request->correo;
+        $usuario->password = Hash::make($request->password);
+        $usuario->id_fondo = $request->id_fondo;
+        $usuario->id_rol = $request->id_rol;
+        $usuario->save();
+        return $usuario;
+    }
 }

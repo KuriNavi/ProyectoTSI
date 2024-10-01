@@ -45,6 +45,7 @@ Route::apiResource('usuarios', UsuariosController::class);
 Route::put('usuarios/actualizar-plus/{usuario}', [UsuariosController::class, 'plus']);
 Route::put('usuarios/cambiar-contrasena/{usuario}', [UsuariosController::class, 'password']);
 Route::post('/login',[UsuariosController::class, 'login']);
+Route::put('usuarios/actualizarTodo/{usuario}',[UsuariosController::class, 'updateDeTodo']);
 
 
 Route::apiResource('categorias', CategoriasController::class);
