@@ -1,4 +1,7 @@
 import 'package:agenda_tsi/Actividades/actividades_lista.dart';
+import 'package:agenda_tsi/BotonDePanico/boton_panico_page.dart';
+import 'package:agenda_tsi/Usuarios/registro_usuario_page.dart';
+import 'package:agenda_tsi/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:agenda_tsi/services/users_service.dart';
@@ -37,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 Text(
-                  "Agenda Guay Super Cuqui",
+                  "Agenda",
                   style: TextStyle(fontSize: 40, fontFamily: "sans-serif"),
                 ),
                 SizedBox(
@@ -130,15 +133,83 @@ class _LoginPageState extends State<LoginPage> {
                   if (pasoElLogin) {
                     final route = MaterialPageRoute(
                       builder: (BuildContext context) {
-                        return ActividadesLista();
+                        return HomePage();
                       },
                     );
-                    Navigator.of(context).push(route);
+                    Navigator.of(context).pushReplacement(route);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Container(
+                          height: 70,
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.deepPurple),
+                              color: Color(0xFFE1CCEC),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Text(
+                            "Error al Iniciar Sesion, Constraseña o Correo Electronico Incorrecto",
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                      ),
+                    );
+                    final route = MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return LoginPage();
+                      },
+                    );
+                    Navigator.of(context).pushReplacement(route);
                   }
                 }
               },
             ),
-          )
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Aun no Tienes una Cuenta?",
+                style: TextStyle(color: Colors.black, fontSize: 15),
+              ),
+              TextButton(
+                onPressed: () {
+                  final route = MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return RegistroUsuarioPage();
+                    },
+                  );
+
+                  Navigator.push(context, route);
+                },
+                child: Text(
+                  "Registrate Aqui",
+                  style: TextStyle(color: Colors.deepPurple, fontSize: 15),
+                ),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 80,
+          ),
+          FloatingActionButton(
+            backgroundColor: Colors.red,
+            onPressed: () {
+              final route = MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return BotonPanicoPage();
+                },
+              );
+              Navigator.of(context).push(route);
+            },
+            child: Icon(
+              MdiIcons.skullCrossbones,
+              color: Colors.black,
+            ),
+          ),
         ],
       ),
     );
